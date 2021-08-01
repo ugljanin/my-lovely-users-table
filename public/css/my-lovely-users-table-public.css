@@ -1,0 +1,155 @@
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+
+#my-lovely-users-list {
+    background: white;
+    display: flex;
+    justify-content: center;
+}
+
+#my-lovely-users-list h1 {
+    padding: 0px 0 30px 0;
+    font-size: 30px;
+}
+
+#my-lovely-user-details {
+    display: none;
+}
+
+
+/* table styling */
+
+#my-lovely-users-list tbody tr:hover td {
+    background: beige;
+}
+
+#my-lovely-users-list table tr td {
+    border: 1px solid #ccc;
+}
+
+#my-lovely-users-list thead td {
+    background: blanchedalmond
+}
+
+#my-lovely-users-list tbody tr:nth-child(even) {
+    background: #f1f1f1
+}
+
+#my-lovely-users-list tbody tr:nth-child(odd) {
+    background: #FFF
+}
+
+
+/* containers */
+
+#my-lovely-users-list .plugin-container {
+    width: 1200px;
+    padding: 60px 10px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#my-lovely-users-list .users-list {
+    width: 45%;
+}
+
+#my-lovely-users-list .user-details {
+    width: 45%;
+}
+
+#my-lovely-users-list .title {
+    font-size: 30px;
+    padding: 0 0 10px 0;
+}
+
+#my-lovely-users-list ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+#my-lovely-users-list a:link,
+#my-lovely-users-list a:active,
+#my-lovely-users-list a:visited {
+    color: black;
+    background: transparent;
+    text-decoration: none;
+}
+
+#my-lovely-users-list a:hover {
+    /* text-decoration: underline; */
+    background: transparent;
+}
+
+
+/* loading spinner */
+
+#my-lovely-users-list .lds-dual-ring {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+}
+
+#my-lovely-users-list .lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    border-color: #000 transparent #000 transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* Messages */
+
+.msg-danger {
+    background: #ffebeb;
+    padding: 20px 40px;
+    border-radius: 10px;
+    border: 1px solid #fbb;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.msg-success {
+    background: #e9f4f0;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #b3c8c0;
+    text-align: left;
+    line-height: 1.2;
+}
+
+
+/* responsive */
+
+@media screen and (max-width: 768px) {
+    #my-lovely-users-list .plugin-container {
+        flex-direction: column;
+    }
+    #my-lovely-users-list .users-list {
+        width: 100%;
+        order: 2;
+    }
+    #my-lovely-users-list .user-details {
+        width: 100%;
+        order: 1;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 900px) and (min-width: 600px) {}
