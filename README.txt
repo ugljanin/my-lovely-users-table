@@ -1,8 +1,14 @@
 # My Lovely Users List #
 
-This plugin shows users list fetched from 3rd party API *https://jsonplaceholder.typicode.com/*. Once clicked on the user from the list, his details are displayed in right column. The plugin is customisable and configurable.
+This plugin shows users list with corresponding details (fetched from 3rd party API *https://jsonplaceholder.typicode.com/*). Once clicked on the user from the list, his details are displayed in right column. The plugin is customizable and configurable.
 
 ## Installation
+
+### Dependencies
+
+No plugin is required to be installed prior to installing this plugin.
+
+### Installation steps
 
 Use composer [composer](https://getcomposer.org/) to install foobar.
 
@@ -10,18 +16,20 @@ Use composer [composer](https://getcomposer.org/) to install foobar.
 composer install
 ```
 
-### Frontend technologies
-
-I used jQuery to load the data dynamically on click. Styling is done via CSS and some responsiveness is also applied.
-
 ## Usage
 
 To access the plugin you can use the default endpoint 
 
 ```bash
-my-lovely-users-table/
+/my-lovely-users-table/
 ```
 or you can set your own endpoint in the admin area. Once you open mentioned url, you will be able to see the list of users retrieved from 3rd party API.
+
+## Implementation
+
+### Frontend technologies
+
+jQuery is used to load the data dynamically on click. Styling is done via CSS and some responsiveness is also applied.
 
 ### Caching API requests
 
@@ -35,7 +43,7 @@ If there is no response from the API server and the data is not cached plugin wi
 
 One clicked on any part of the user row in the table, the ID of that user will be reported and new request will be made to obtain user details. The request will also be cached as mentioned in previous section. I use nonce to prevent spam.
 
-## Modifications
+## Modifications/Customization
 
 ### Changing templates
 
@@ -50,8 +58,6 @@ I created two actions, both accepting two parameters, that are the date, and use
 - *my-lovely-users-table-user-clicked* for detecting when the user is displayed successfully.
 - *my-lovely-users-table-user-error* for detecting when the user is not displayed.
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
