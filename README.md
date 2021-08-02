@@ -10,7 +10,8 @@ No plugin is required to be installed prior to installing this plugin.
 
 ### Installation steps
 
-Use composer [composer](https://getcomposer.org/) to install foobar.
+1. Clone this repository in your plugins folder
+2. Use composer [composer](https://getcomposer.org/) to install dependencies.
 
 ```bash
 composer install
