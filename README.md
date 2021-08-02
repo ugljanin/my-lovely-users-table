@@ -58,6 +58,25 @@ I created two actions, both accepting two parameters, that are the date, and use
 - *my-lovely-users-table-user-clicked* for detecting when the user is displayed successfully.
 - *my-lovely-users-table-user-error* for detecting when the user is not displayed.
 
+Below is an example of using these two actions to create two functions for loging clicks on user in a file. 
+
+    add_action('my-lovely-users-table-user-clicked','log_user_click', 10, 2);
+    function log_user_click($date,$userid){
+        $file = get_template_directory() . '/user-log.txt'; 
+        $myfile = fopen($file, "a") or die("Unable to open file!");
+        $txt = "Clicked on a user $userid at $date\n";
+        fwrite($myfile, $txt);
+        fclose($myfile);
+    }
+
+    add_action('my-lovely-users-table-user-error','log_user_click_error', 10, 2);
+    function log_user_click_error($date,$userid){
+        $file = get_template_directory() . '/user-log-error.txt'; 
+        $myfile = fopen($file, "a") or die("Unable to open file!");
+        $txt = "Clicked on a user at $userid $date\n";
+        fwrite($myfile, $txt);
+        fclose($myfile);
+    }
 
 Please make sure to update tests as appropriate.
 
