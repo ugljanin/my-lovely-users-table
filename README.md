@@ -58,7 +58,7 @@ I created two actions, both accepting two parameters, that are the date, and use
 - *my-lovely-users-table-user-clicked* for detecting when the user is displayed successfully.
 - *my-lovely-users-table-user-error* for detecting when the user is not displayed.
 
-Below is an example of using these two actions to create two functions for loging clicks on user in a file. 
+Below is an example of code that is using these two actions to create two functions for loging clicks on user in a file. The code should be added in the functions.php file in the active WordPress theme.
 
     add_action('my-lovely-users-table-user-clicked','log_user_click', 10, 2);
     function log_user_click($date,$userid){
