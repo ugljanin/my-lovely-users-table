@@ -1,0 +1,17 @@
+{
+    "name": "ugljanin/my-lovely-users-table",
+    "description": "WordPress plugin that shows users in a table",
+    "license": "MIT",
+    "authors": [{
+        "name": "Emir Ugljanin",
+        "email": "emirugljanin@gmail.com"
+    }],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "MLUT\\": "./includes",
+            "MLUTAdmin\\": "./admin",
+            "MLUTPublic\\": "./public"
+        }
+    }
+}

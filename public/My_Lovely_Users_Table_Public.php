@@ -20,6 +20,7 @@
  * @subpackage My_Lovely_Users_Table/public
  * @author     Emir Ugljanin <emirugljanin@gmail.com>
  */
+namespace MLUTPublic;
 class My_Lovely_Users_Table_Public {
 
 	/**

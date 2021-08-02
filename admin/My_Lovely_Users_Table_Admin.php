@@ -20,7 +20,9 @@
  * @subpackage My_Lovely_Users_Table/admin
  * @author     Emir Ugljanin <emirugljanin@gmail.com>
  */
-class My_Lovely_Users_Table_Admin {
+
+namespace MLUTAdmin;
+class My_Lovely_Users_Table_Admin{
 
 	/**
 	 * The ID of this plugin.

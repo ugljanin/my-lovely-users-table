@@ -24,7 +24,9 @@
  * @subpackage My_Lovely_Users_Table/includes
  * @author     Emir Ugljanin <emirugljanin@gmail.com>
  */
-class My_Lovely_Users_Table_i18n {
+namespace MLUT;
+
+class i18n {
 
 
 	/**

@@ -27,7 +27,10 @@
  * @subpackage My_Lovely_Users_Table/includes
  * @author     Emir Ugljanin <emirugljanin@gmail.com>
  */
-class My_Lovely_Users_Table {
+namespace MLUT;
+
+
+class MLUT {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -35,7 +38,7 @@ class My_Lovely_Users_Table {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      My_Lovely_Users_Table_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -86,10 +89,10 @@ class My_Lovely_Users_Table {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - My_Lovely_Users_Table_Loader. Orchestrates the hooks of the plugin.
-	 * - My_Lovely_Users_Table_i18n. Defines internationalization functionality.
-	 * - My_Lovely_Users_Table_Admin. Defines all hooks for the admin area.
-	 * - My_Lovely_Users_Table_Public. Defines all hooks for the public side of the site.
+	 * - Loader. Orchestrates the hooks of the plugin.
+	 * - i18n. Defines internationalization functionality.
+	 * - Admin. Defines all hooks for the admin area.
+	 * - Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -99,30 +102,7 @@ class My_Lovely_Users_Table {
 	 */
 	private function load_dependencies() {
 
-		/**
-		 * The class responsible for orchestrating the actions and filters of the
-		 * core plugin.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-my-lovely-users-table-loader.php';
-
-		/**
-		 * The class responsible for defining internationalization functionality
-		 * of the plugin.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-my-lovely-users-table-i18n.php';
-
-		/**
-		 * The class responsible for defining all actions that occur in the admin area.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-my-lovely-users-table-admin.php';
-
-		/**
-		 * The class responsible for defining all actions that occur in the public-facing
-		 * side of the site.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-my-lovely-users-table-public.php';
-
-		$this->loader = new My_Lovely_Users_Table_Loader();
+		$this->loader = new \MLUT\Loader();
 
 	}
 
@@ -137,10 +117,7 @@ class My_Lovely_Users_Table {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new My_Lovely_Users_Table_i18n();
-
-		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
-
+		$plugin_i18n = new \MLUT\i18n();
 	}
 
 	/**
@@ -152,7 +129,7 @@ class My_Lovely_Users_Table {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new My_Lovely_Users_Table_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new \MLUTAdmin\My_Lovely_Users_Table_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -171,7 +148,7 @@ class My_Lovely_Users_Table {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new My_Lovely_Users_Table_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new \MLUTPublic\My_Lovely_Users_Table_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
@@ -206,7 +183,7 @@ class My_Lovely_Users_Table {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    My_Lovely_Users_Table_Loader    Orchestrates the hooks of the plugin.
+	 * @return    Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;

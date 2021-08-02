@@ -30,6 +30,17 @@ if (!defined('WPINC')) {
 	die;
 }
 
+//to be able to load namespaces
+if(file_exists(dirname(__FILE__).'/vendor/autoload.php'))
+{
+	require_once dirname(__FILE__).'/vendor/autoload.php';
+}
+
+use MLUT\Activate;
+use MLUT\Deactivate;
+use MLUT\MLUT;
+use MLUTPublic\Users;
+
 /**
  * Currently plugin version.
  * Start at version 1.0.0 and use SemVer - https://semver.org
@@ -39,12 +50,10 @@ define('MY_LOVELY_USERS_TABLE_VERSION', '1.0.0');
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-my-lovely-users-table-activator.php
  */
 function activate_my_lovely_users_table()
 {
-	require_once plugin_dir_path(__FILE__) . 'includes/class-my-lovely-users-table-activator.php';
-	My_Lovely_Users_Table_Activator::activate();
+	Activate::activate();
 }
 
 /**
@@ -53,8 +62,7 @@ function activate_my_lovely_users_table()
  */
 function deactivate_my_lovely_users_table()
 {
-	require_once plugin_dir_path(__FILE__) . 'includes/class-my-lovely-users-table-deactivator.php';
-	My_Lovely_Users_Table_Deactivator::deactivate();
+	Deactivate::deactivate();
 }
 
 register_activation_hook(__FILE__, 'activate_my_lovely_users_table');
@@ -64,7 +72,7 @@ register_deactivation_hook(__FILE__, 'deactivate_my_lovely_users_table');
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path(__FILE__) . 'includes/class-my-lovely-users-table.php';
+
 
 /**
  * Begins execution of the plugin.
@@ -77,70 +85,11 @@ require plugin_dir_path(__FILE__) . 'includes/class-my-lovely-users-table.php';
  */
 function run_my_lovely_users_table()
 {
-
-	$plugin = new My_Lovely_Users_Table();
+	$plugin = new MLUT();
+	$users= new Users;
 	$plugin->run();
 }
 run_my_lovely_users_table();
 
-function load_user_details_ajax()
-{
-	header('Content-type: application/json');
-	$nonce = $_POST['nonce'];
 
-	//check nonce
-	if (!wp_verify_nonce($nonce, 'ajax-nonce')) {
-		$status = array(
-			'type' => 'danger',
-			'message' => 'Busted'
-		);
-		echo json_encode($status);
-		wp_die();
-	}
-	// sanitize input
-	$user_details = intval($_POST['user_details']);
-	$api_url = 'https://jsonplaceholder.typicode.com/users?id=' . $user_details;
 
-	// $resultuser = file_get_contents($url);
-	$body = get_transient('my_lovely_users_details_api_request_'. $user_details);
-	$caching_time = get_option( 'my_lovely_users_table_caching_time' ,1);
-
-	if (false === $body) {
-		$response = wp_remote_get($api_url);
-		if (is_wp_error($response)) {
-			$error_message = $response->get_error_message();
-			echo "Something went wrong: $error_message";
-		} else {
-			if (200 == wp_remote_retrieve_response_code($response)) {
-				$body     = wp_remote_retrieve_body($response);
-				set_transient('my_lovely_users_details_api_request_'. $user_details, $body, intval($caching_time) * MINUTE_IN_SECONDS);
-			} else {
-	?>
-				<h1>An error occured while fetching users, please try again</h1>
-	<?php
-			}
-		}
-	}
-	$array = json_decode($body, true);
-	if(is_array($array)) {
-		$status = array(
-			'type' => 'success',
-			'message' => 'Success',
-			'content' => $array
-		);
-		//action that fires on user clicked, could be used for loging purposes
-		do_action('my-lovely-users-table-user-clicked',date('Y-m-d H:i:s'),$user_details);
-	} else {
-		$status = array(
-			'type' => 'danger',
-			'message' => 'There is a problem with the data source, please contact the administrator'
-		);
-		//action that fires on user error occurred
-		do_action('my-lovely-users-table-user-error',date('Y-m-d H:i:s'),$user_details);
-	}
-	echo json_encode($status);
-	wp_die();
-}
-
-add_action('wp_ajax_nopriv_load_user_details_ajax', 'load_user_details_ajax');
-add_action('wp_ajax_load_user_details_ajax', 'load_user_details_ajax');

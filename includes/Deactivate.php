@@ -20,7 +20,9 @@
  * @subpackage My_Lovely_Users_Table/includes
  * @author     Emir Ugljanin <emirugljanin@gmail.com>
  */
-class My_Lovely_Users_Table_Deactivator {
+namespace MLUT;
+
+class Deactivate {
 
 	/**
 	 * Short Description. (use period)

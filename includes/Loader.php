@@ -21,7 +21,9 @@
  * @subpackage My_Lovely_Users_Table/includes
  * @author     Emir Ugljanin <emirugljanin@gmail.com>
  */
-class My_Lovely_Users_Table_Loader {
+namespace MLUT;
+
+class Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

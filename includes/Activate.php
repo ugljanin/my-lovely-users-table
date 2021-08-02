@@ -20,7 +20,8 @@
  * @subpackage My_Lovely_Users_Table/includes
  * @author     Emir Ugljanin <emirugljanin@gmail.com>
  */
-class My_Lovely_Users_Table_Activator {
+namespace MLUT;
+class Activate {
 
 	/**
 	 * Short Description. (use period)
