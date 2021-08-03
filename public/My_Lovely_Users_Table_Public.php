@@ -20,7 +20,7 @@
  * @subpackage My_Lovely_Users_Table/public
  * @author     Emir Ugljanin <emirugljanin@gmail.com>
  */
-namespace MLUTPublic;
+namespace MLUT\PublicArea;
 class My_Lovely_Users_Table_Public {
 
 	/**
@@ -56,11 +56,11 @@ class My_Lovely_Users_Table_Public {
 	}
 
 	/**
-     * Custom Plugin Rewrites
+     * Custom Plugin Redirect
      *
      * @since    1.0.0
      */
-    public function register_custom_plugin_redirect()
+    public function register_custom_template_redirect()
     {
         // Show all users
         if (get_query_var('my_lovely_users_table')) {

@@ -6,12 +6,18 @@
         "name": "Emir Ugljanin",
         "email": "emirugljanin@gmail.com"
     }],
-    "require": {},
     "autoload": {
         "psr-4": {
             "MLUT\\": "./includes",
-            "MLUTAdmin\\": "./admin",
-            "MLUTPublic\\": "./public"
-        }
+            "MLUT\\AdminArea\\": "./admin",
+            "MLUT\\PublicArea\\": "./public"
+        },
+        "classmap": [
+            "src/"
+        ]
+    },
+    "require-dev": {
+        "brain/monkey": "2.*",
+        "phpunit/phpunit": "9"
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace MLUTPublic;
+namespace MLUT\PublicArea;
 
-class Users
+class UsersTable
 {
     public function __construct()
     {
@@ -13,7 +13,6 @@ class Users
     {
         header('Content-type: application/json');
         $nonce = $_POST['nonce'];
-
         //check nonce
         if (!wp_verify_nonce($nonce, 'ajax-nonce')) {
             $status = array(
@@ -30,7 +29,6 @@ class Users
         // $resultuser = file_get_contents($url);
         $body = get_transient('my_lovely_users_details_api_request_' . $user_details);
         $caching_time = get_option('my_lovely_users_table_caching_time', 1);
-
         if (false === $body) {
             $response = wp_remote_get($api_url);
             if (is_wp_error($response)) {
@@ -47,19 +45,21 @@ class Users
                 }
             }
         }
+        
         $array = json_decode($body, true);
+        // $array = json_decode(apply_filters( 'my_lovely_users_table_transform_all', $body ), true);
         if (is_array($array)) {
+            $user=new User($array[0]['id'],$array[0]['name'], $array[0]['email'], $array[0]['username'], $array[0]['address']['city'], $array[0]['address']['suite'], $array[0]['address']['street'], $array[0]['company']['name'], $array[0]['phone']);
             $status = array(
                 'type' => 'success',
-                'message' => 'Success',
-                'content' => $array
+                'content' => $user->export()
             );
             //action that fires on user clicked, could be used for loging purposes
             do_action('my-lovely-users-table-user-clicked', date('Y-m-d H:i:s'), $user_details);
         } else {
             $status = array(
                 'type' => 'danger',
-                'message' => 'There is a problem with the data source, please contact the administrator'
+                'content' => 'There is a problem with the data source, please contact the administrator'
             );
             //action that fires on user error occurred
             do_action('my-lovely-users-table-user-error', date('Y-m-d H:i:s'), $user_details);

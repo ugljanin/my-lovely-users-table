@@ -21,7 +21,8 @@
  * @author     Emir Ugljanin <emirugljanin@gmail.com>
  */
 
-namespace MLUTAdmin;
+namespace MLUT\AdminArea;
+
 class My_Lovely_Users_Table_Admin{
 
 	/**
@@ -66,6 +67,7 @@ class My_Lovely_Users_Table_Admin{
 	 *
 	 * @since    1.0.0
 	 */
+
 	public function add_admin_menu() {
 
 		// Main Menu Item

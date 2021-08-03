@@ -39,7 +39,7 @@ if(file_exists(dirname(__FILE__).'/vendor/autoload.php'))
 use MLUT\Activate;
 use MLUT\Deactivate;
 use MLUT\MLUT;
-use MLUTPublic\Users;
+use MLUT\PublicArea\UsersTable;
 
 /**
  * Currently plugin version.
@@ -86,7 +86,7 @@ register_deactivation_hook(__FILE__, 'deactivate_my_lovely_users_table');
 function run_my_lovely_users_table()
 {
 	$plugin = new MLUT();
-	$users= new Users;
+	$users= new UsersTable;
 	$plugin->run();
 }
 run_my_lovely_users_table();

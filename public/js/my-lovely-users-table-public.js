@@ -43,19 +43,19 @@
             success: function(result, status, xhr) { // success callback function				
                 $("#status").removeClass("msg-success msg-danger").hide();
                 if (result.type == "success") {
-                    $("#user-id").html(result.content[0].id);
-                    $("#user-name").html(result.content[0].name);
-                    $("#user-email").html(result.content[0].email);
-                    $("#user-username").html(result.content[0].username);
-                    $("#user-city").html(result.content[0].address.city);
-                    $("#user-suite").html(result.content[0].address.suite);
-                    $("#user-street").html(result.content[0].address.street);
-                    $("#user-company").html(result.content[0].company.name);
-                    $("#user-phone").html(result.content[0].phone);
+                    $("#user-id").html(result.content.id);
+                    $("#user-name").html(result.content.name);
+                    $("#user-email").html(result.content.email);
+                    $("#user-username").html(result.content.username);
+                    $("#user-city").html(result.content.city);
+                    $("#user-suite").html(result.content.suite);
+                    $("#user-street").html(result.content.street);
+                    $("#user-company").html(result.content.name);
+                    $("#user-phone").html(result.content.phone);
                     $("#my-lovely-user-details").addClass("msg-success").removeClass("msg-danger").fadeIn();
 
                 } else if (result.type == "danger") {
-                    $("#status").removeClass("msg-success").addClass("msg-danger").html(result.message).fadeIn();
+                    $("#status").removeClass("msg-success").addClass("msg-danger").html(result.content).fadeIn();
                 }
             },
             beforeSend: function(data, status, xhr) { // success callback function

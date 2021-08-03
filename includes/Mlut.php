@@ -29,6 +29,8 @@
  */
 namespace MLUT;
 
+use MLUT\AdminArea;
+use MLUT\PublicArea;
 
 class MLUT {
 
@@ -127,16 +129,44 @@ class MLUT {
 	 * @since    1.0.0
 	 * @access   private
 	 */
+
+	public function init() {
+		/* ... */
+	  }
+	public function addHooks() {
+		// add_action('init', [ $this, 'init' ], 20);
+
+		add_filter('the_title', function($title) {
+			return $title;
+		 }, 99);
+	 }
+	 public function fireHooks() {
+
+		do_action('my_admin_action', $this);
+ 
+	 }
+	 public $post;
+
+    function setPost() {
+
+        global $post;
+        $this->post = $post;
+
+        do_action('my_class_set_post', $this);
+
+        return $post;
+    }
+
 	private function define_admin_hooks() {
 
-		$plugin_admin = new \MLUTAdmin\My_Lovely_Users_Table_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new \MLUT\AdminArea\My_Lovely_Users_Table_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		
 		// Lets add a hook to setup our rewrites for the custom plugin URLs
 		$this->loader->add_action( 'init', $plugin_admin, 'setup_rewrites' );
-
+	
 	}
 
 	/**
@@ -146,17 +176,22 @@ class MLUT {
 	 * @since    1.0.0
 	 * @access   private
 	 */
-	private function define_public_hooks() {
+	public function define_public_hooks() {
 
-		$plugin_public = new \MLUTPublic\My_Lovely_Users_Table_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new \MLUT\PublicArea\My_Lovely_Users_Table_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
 		// Setup action and filter for dynamic pages
 		$this->loader->add_filter( 'query_vars', $plugin_public, 'register_query_values' );
-		$this->loader->add_action( 'template_redirect', $plugin_public, 'register_custom_plugin_redirect' );
+		$this->loader->add_action( 'template_redirect', $plugin_public, 'register_custom_template_redirect' );
 
+	}
+
+	public function testCall()
+	{
+		return 1;
 	}
 
 	/**
