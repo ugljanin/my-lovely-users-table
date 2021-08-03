@@ -6,8 +6,6 @@
  * @link       https://www.emirugljanin.com
  * @since      1.0.0
  *
- * @package    My_Lovely_Users_Table
- * @subpackage My_Lovely_Users_Table/public
  */
 
 /**
@@ -16,12 +14,10 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    My_Lovely_Users_Table
- * @subpackage My_Lovely_Users_Table/public
  * @author     Emir Ugljanin <emirugljanin@gmail.com>
  */
 namespace MLUT\PublicArea;
-class My_Lovely_Users_Table_Public {
+class MyLovelyUsersTablePublic {
 
 	/**
 	 * The ID of this plugin.

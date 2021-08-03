@@ -6,8 +6,8 @@
  * @link       https://www.emirugljanin.com
  * @since      1.0.0
  *
- * @package    My_Lovely_Users_Table
- * @subpackage My_Lovely_Users_Table/admin
+ * @package    MyLovelyUsersTableAdmin
+ * @subpackage MyLovelyUsersTableAdmin/admin
  */
 
 /**
@@ -16,14 +16,14 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    My_Lovely_Users_Table
- * @subpackage My_Lovely_Users_Table/admin
+ * @package    MyLovelyUsersTableAdmin
+ * @subpackage MyLovelyUsersTableAdmin/admin
  * @author     Emir Ugljanin <emirugljanin@gmail.com>
  */
 
 namespace MLUT\AdminArea;
 
-class My_Lovely_Users_Table_Admin{
+class MyLovelyUsersTableAdmin{
 
 	/**
 	 * The ID of this plugin.
@@ -289,10 +289,7 @@ class My_Lovely_Users_Table_Admin{
 		$url_slug = get_option( 'my_lovely_users_table_endpoint' ,'my-lovely-users-table');
 		// Lets setup our rewrite rules
 		add_rewrite_rule( $url_slug . '/?$', 'index.php?my_lovely_users_table=index', 'top' );
-		// add_rewrite_rule( $url_slug . '/page/([0-9]{1,})/?$', 'index.php?my_lovely_users_table=items&my_lovely_users_table_paged=$matches[1]', 'top' );
-		// add_rewrite_rule( $url_slug . '/([a-zA-Z0-9\-]{1,})/?$', 'index.php?my_lovely_users_table=detail&my_lovely_users_table_vehicle=$matches[1]', 'top' );
-
-
+	
 		// Lets flush rewrite rules on activation
 		flush_rewrite_rules();
 	}
