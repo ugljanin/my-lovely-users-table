@@ -11,7 +11,7 @@ No plugin is required to be installed prior to installing this plugin.
 ### Installation steps
 
 1. Clone this repository in your plugins folder
-2. Enter into folder *my-lovely-users-table* via shell or CMD and use composer [composer](https://getcomposer.org/) to install dependencies.
+2. Enter into folder *my-lovely-users-table* via shell or CMD and use [composer](https://getcomposer.org/) to install dependencies.
 
 ```bash
 composer install
@@ -81,6 +81,14 @@ Below is an example of code that is using these two actions to create two functi
     }
 
 Please make sure to update tests as appropriate.
+
+## Unit tests
+
+To be able to run unit tests you should run
+
+```bash
+./vendor/bin/phpunit
+```
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
