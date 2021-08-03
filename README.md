@@ -84,7 +84,7 @@ Please make sure to update tests as appropriate.
 
 ## Unit tests
 
-To be able to run unit tests you should run
+Unit tests are located in *tests/phpunit/testcases*, and to be able to run them you should execute
 
 ```bash
 ./vendor/bin/phpunit
