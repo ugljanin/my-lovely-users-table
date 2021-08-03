@@ -11,11 +11,12 @@ No plugin is required to be installed prior to installing this plugin.
 ### Installation steps
 
 1. Clone this repository in your plugins folder
-2. Use composer [composer](https://getcomposer.org/) to install dependencies.
+2. Enter into folder *my-lovely-users-table* via shell or CMD and use composer [composer](https://getcomposer.org/) to install dependencies.
 
 ```bash
 composer install
 ```
+1. Login to WP admin area and Activate plugin *My Lovely Users List* 
 
 ## Usage
 

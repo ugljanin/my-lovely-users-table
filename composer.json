@@ -11,10 +11,7 @@
             "MLUT\\": "./includes",
             "MLUT\\AdminArea\\": "./admin",
             "MLUT\\PublicArea\\": "./public"
-        },
-        "classmap": [
-            "src/"
-        ]
+        }
     },
     "require-dev": {
         "brain/monkey": "2.*",
