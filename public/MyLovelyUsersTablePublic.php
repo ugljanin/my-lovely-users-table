@@ -132,7 +132,7 @@ class MyLovelyUsersTablePublic {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/my-lovely-users-table-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/my-lovely-users-table-public.js', array( 'jquery' ), $this->version, true );
 		wp_localize_script($this->plugin_name, 'the_ajax_script', array(
 			'ajaxurl' => admin_url('admin-ajax.php'),
 			'nonce' => wp_create_nonce('ajax-nonce')
