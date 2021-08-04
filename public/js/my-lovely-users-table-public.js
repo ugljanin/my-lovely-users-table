@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
     'use strict';
-    $('a').on('click', function(e) {
+    $('#my-lovely-users-list a').on('click', function(e) {
         e.preventDefault();
         var userid = $(this).parent().parent().data('id');
         $.ajax({
