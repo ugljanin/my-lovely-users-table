@@ -9,10 +9,10 @@ class User
     function __construct($id, $name, $email, $username, $city, $suite, $street, $company, $phone)
     {
         add_filter('my_lovely_users_table_transform_all', [&$this, 'transform_text'], 10, 1);
-        // if($this->validate_users_id($id))
+        if($this->validate_users_id($id))
             $this->id = apply_filters('my_lovely_users_table_transform_all', $id);
         $this->name = apply_filters('my_lovely_users_table_transform_all', $name);
-        // if($this->validate_users_email($email))
+        if($this->validate_users_email($email))
             $this->email = apply_filters('my_lovely_users_table_transform_all', $email);
         $this->username = apply_filters('my_lovely_users_table_transform_all', $username);
         $this->city = apply_filters('my_lovely_users_table_transform_all', $city);
