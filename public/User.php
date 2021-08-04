@@ -23,7 +23,7 @@ class User
     }
     public function transform_text($value)
     {
-        return strtolower($value);
+        return strtoupper($value);
     }
     public function validate_users_email($email)
     {
